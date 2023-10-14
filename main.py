@@ -54,7 +54,7 @@ class YandexDiskAPI:
         response = requests.put(url, headers=headers, params=params) # делаем запрос на API Yandex Disk для создания папки
 
     # Метод для загрузки фотографии на Yandex Disk
-    def upload_photo(self, photo_url, folder_name):
+    def upload_photo(self, photo_url, folder_name, file_name):
         url = 'https://cloud-api.yandex.net/v1/disk/resources/upload'
         headers = {
             'Authorization': f'OAuth {self.token}'
