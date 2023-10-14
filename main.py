@@ -60,7 +60,7 @@ class YandexDiskAPI:
             'Authorization': f'OAuth {self.token}'
         }
         params = {
-            'path': folder_name,
+            'path': folder_name + '/' + file_name,
             'url': photo_url,
             'overwrite': True # параметр, указывающий на необходимость перезаписи файла, если он уже существует
         }
@@ -109,13 +109,12 @@ if __name__ == '__main__':
         likes = photo['likes']['count']
         largest_size = max(photo['sizes'], key=lambda x: x['width'])
         photo_url = largest_size['url']
-
-        yandex_disk_api.upload_photo(photo_url, folder_name)
-
+        file_name = f'{likes}.jpg'
+        yandex_disk_api.upload_photo(photo_url, folder_name, file_name)
+        
         result = {
-            'file_name': f'{likes}.jpg',
-            'size': largest_size['type'],
-            'likes': likes
+            'file_name': file_name,
+            'size': largest_size
         }
         results.append(result)
 
